@@ -1,4 +1,4 @@
-package com.mmf.dao;
+package com.mmf.dao.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -6,10 +6,8 @@ import java.io.Serializable;
 
 @Embeddable
 public class RoleMapPK implements Serializable {
-    @Column(name = "USER_ID")
     private int modelUserId;
 
-    @Column(name = "ROLE_ID")
     private int modelUserRoleId;
 
     public RoleMapPK(int modelUserId, int modelUserRoleId) {
@@ -18,5 +16,21 @@ public class RoleMapPK implements Serializable {
     }
 
     public RoleMapPK() {
+    }
+
+    public int getModelUserId() {
+        return modelUserId;
+    }
+
+    public void setModelUserId(int modelUserId) {
+        this.modelUserId = modelUserId;
+    }
+
+    public int getModelUserRoleId() {
+        return modelUserRoleId;
+    }
+
+    public void setModelUserRoleId(int modelUserRoleId) {
+        this.modelUserRoleId = modelUserRoleId;
     }
 }
