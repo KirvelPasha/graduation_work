@@ -17,6 +17,10 @@ public class ModelUserRole {
     @OneToMany(mappedBy = "modelUserRole")
     private List<RoleMap> roleMaps;
 
+    public ModelUserRole(Integer roleId) {
+        this.roleId = roleId;
+    }
+
     public ModelUserRole() {
     }
 

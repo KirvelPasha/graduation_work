@@ -2,10 +2,12 @@ package com.mmf.service.impl;
 
 import com.mmf.dao.entity.ModelUserRole;
 import com.mmf.dao.entity.RoleMap;
+import com.mmf.dao.entity.RoleMapPK;
 import com.mmf.dao.repository.UserRepository;
 import com.mmf.dao.entity.ModelUser;
 import com.mmf.service.UserRoleService;
 import com.mmf.service.UserService;
+import com.mmf.service.dto.RoleMapDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,14 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int save(ModelUser modelUser) {
-        RoleMap roleMap = new RoleMap();
-        Optional<ModelUserRole> modelUserRoleOptional = userRoleService.getUseRoleById(1);
-        roleMap.setModelUserRole(modelUserRoleOptional.get());
-        List<RoleMap> modelUserRoles = Stream.of(roleMap).collect(Collectors.toList());
-        modelUser.setRoleMaps(modelUserRoles);
         ModelUser newModelUser = userRepository.save(modelUser);
-        roleMap.setModelUser(newModelUser);
-        roleMapService.save(roleMap);
+        RoleMapDto roleMapDto = new RoleMapDto(newModelUser.getUserId(), 1);
+        roleMapService.save(roleMapDto);
         return newModelUser.getUserId();
     }
 }
