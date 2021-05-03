@@ -31,9 +31,9 @@ public class UserServiceImpl implements UserService {
         RoleMap roleMap = new RoleMap();
         Optional<ModelUserRole> modelUserRoleOptional = userRoleService.getUseRoleById(1);
         roleMap.setModelUserRole(modelUserRoleOptional.get());
-        roleMap.setModelUser(modelUser);
         List<RoleMap> modelUserRoles = Stream.of(roleMap).collect(Collectors.toList());
         modelUser.setRoleMaps(modelUserRoles);
+
         return userRepository.save(modelUser).getUserId();
     }
 }

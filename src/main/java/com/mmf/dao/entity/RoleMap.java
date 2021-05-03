@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class RoleMap {
 
     @EmbeddedId
-    private RoleMapPK id;
+    private RoleMapPK id = new RoleMapPK();
 
     @ManyToOne
     @MapsId("modelUserId")
