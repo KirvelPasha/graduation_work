@@ -1,4 +1,4 @@
-package com.mmf.web;
+package com.mmf.web.controller;
 
 import com.mmf.dao.entity.ModelUser;
 import com.mmf.service.UserService;

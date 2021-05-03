@@ -2,7 +2,6 @@ package com.mmf.service.impl;
 
 import com.mmf.dao.entity.ModelUserRole;
 import com.mmf.dao.entity.RoleMap;
-import com.mmf.dao.entity.RoleMapPK;
 import com.mmf.dao.repository.UserRepository;
 import com.mmf.dao.entity.ModelUser;
 import com.mmf.service.UserRoleService;
@@ -19,11 +18,13 @@ import java.util.stream.Stream;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserRoleService userRoleService;
+    private final RoleMapServiceImpl roleMapService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserRoleService userRoleService) {
+    public UserServiceImpl(UserRepository userRepository, UserRoleService userRoleService, RoleMapServiceImpl roleMapService) {
         this.userRepository = userRepository;
         this.userRoleService = userRoleService;
+        this.roleMapService = roleMapService;
     }
 
     @Override
@@ -33,7 +34,9 @@ public class UserServiceImpl implements UserService {
         roleMap.setModelUserRole(modelUserRoleOptional.get());
         List<RoleMap> modelUserRoles = Stream.of(roleMap).collect(Collectors.toList());
         modelUser.setRoleMaps(modelUserRoles);
-
-        return userRepository.save(modelUser).getUserId();
+        ModelUser newModelUser = userRepository.save(modelUser);
+        roleMap.setModelUser(newModelUser);
+        roleMapService.save(roleMap);
+        return newModelUser.getUserId();
     }
 }
