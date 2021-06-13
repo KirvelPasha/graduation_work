@@ -15,6 +15,10 @@ public class ModelUser {
     @OneToMany(mappedBy = "modelUser")
     private List<RoleMap> roleMaps;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SCHOOL_ID")
+    private UserSchool userSchool;
+
     public ModelUser(int userId) {
         this.userId = userId;
     }

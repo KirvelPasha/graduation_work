@@ -12,6 +12,7 @@ public class ModelUserRole {
     @Column(name = "ROLE_ID", unique = true)
     private Integer roleId;
 
+    @Column(name = "ROLE_NAME")
     private String roleName;
 
     @OneToMany(mappedBy = "modelUserRole")

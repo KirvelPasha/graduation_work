@@ -1,4 +1,4 @@
-package com.mmf.service;
+package com.mmf.service.interfaces;
 
 import com.mmf.dao.entity.ModelUserRole;
 

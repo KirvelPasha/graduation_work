@@ -2,7 +2,7 @@ package com.mmf.service.impl;
 
 import com.mmf.dao.entity.ModelUserRole;
 import com.mmf.dao.repository.UserRoleRepository;
-import com.mmf.service.UserRoleService;
+import com.mmf.service.interfaces.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
